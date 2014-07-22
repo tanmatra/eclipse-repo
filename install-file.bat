@@ -9,6 +9,8 @@ rem %1 = file
 rem %2 = artifactId
 rem %3 = version
 rem %4 = sources
+del repository\org\eclipse\%2\maven-metadata-local.* 2>nul
+ren repository\org\eclipse\%2\maven-metadata.* maven-metadata-local.*
 call mvn.bat install:install-file ^
  -DlocalRepositoryPath=repository ^
  -DcreateChecksum=true ^
@@ -19,6 +21,5 @@ call mvn.bat install:install-file ^
  -DartifactId=%2 ^
  -Dversion=%3 ^
  -Dsources=%plugins%\%4
-del repository\org\eclipse\%2\maven-metadata.*
+del repository\org\eclipse\%2\maven-metadata.* 2>nul
 ren repository\org\eclipse\%2\maven-metadata-local.* maven-metadata.*
-goto :eof
